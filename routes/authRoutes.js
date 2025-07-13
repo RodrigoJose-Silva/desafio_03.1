@@ -1,5 +1,5 @@
 // routes/authRoutes.js
-// Rotas relacionadas à autenticação de usuários
+// Define as rotas relacionadas à autenticação de usuários
 
 const express = require('express');
 const router = express.Router();
@@ -30,6 +30,7 @@ const authController = require('../controllers/authController');
  *       404:
  *         description: Usuário não cadastrado
  */
+// Rota para login
 router.post('/login', authController.login);
 
 /**
@@ -53,6 +54,7 @@ router.post('/login', authController.login);
  *       404:
  *         description: Usuário não cadastrado
  */
+// Rota para lembrete de senha
 router.post('/forgot-password', authController.forgotPassword);
 
 module.exports = router; 

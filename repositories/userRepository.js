@@ -1,3 +1,7 @@
+// repositories/userRepository.js
+// Simula um banco de dados de usuários em memória
+
+// Lista de usuários cadastrados (simulação)
 const users = [
     {
         username: 'usuario1',
@@ -13,6 +17,11 @@ const users = [
     },
 ];
 
+/**
+ * Busca um usuário pelo nome de usuário (username).
+ * @param {string} username - Nome do usuário a ser buscado.
+ * @returns {object|undefined} Usuário encontrado ou undefined se não existir.
+ */
 exports.findByUsername = (username) => {
     return users.find((u) => u.username === username);
 }; 
