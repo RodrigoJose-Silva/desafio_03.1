@@ -32,4 +32,4 @@ jobs:
 
       - name: Validate API is up
         run: |
-          curl --fail http://localhost:3000 || (echo 'API is not up!' && exit 1)
+          curl --fail http://localhost:3030 || (echo 'API is not up!' && exit 1)
