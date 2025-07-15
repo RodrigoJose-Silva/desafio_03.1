@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
-
       - name: Start API
         run: |
           nohup npm start &
@@ -33,3 +30,6 @@ jobs:
       - name: Validate API is up
         run: |
           curl --fail http://localhost:3030 || (echo 'API is not up!' && exit 1)
+
+      - name: Run tests
+        run: npm test
