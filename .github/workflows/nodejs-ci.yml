@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Desafio 03 - Mentoria 2.0
 
 on:
   push:

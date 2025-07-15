@@ -1,6 +1,5 @@
 import request from 'supertest';
-import chai from 'chai';
-const { expect } = chai;
+import { expect } from 'chai';
 
 describe('Login', () => {
     describe('POST/auth/login', () => {
