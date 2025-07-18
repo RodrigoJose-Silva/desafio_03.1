@@ -1,11 +1,11 @@
 const request = require("supertest");
 const { expect } = require("chai");
+const { faker } = require('@faker-js/faker');
 require("dotenv").config();
-describe("Login", () => {
 
-
-  describe("POST/auth/login", () => {
-    it('Deve retornar status 200 e mensagem "Login realizado com sucesso" quando usar credenciais válidas ', async () => {
+describe(" [login] Login", () => {
+  describe(" POST/auth/login", () => {
+    it(' Deve retornar status 200 e mensagem "Login realizado com sucesso" quando usar credenciais válidas ', async () => {
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/login")
         .set("Content-Type", "application/json")
@@ -16,18 +16,19 @@ describe("Login", () => {
       expect(resposta.status).to.equal(200);
       expect(resposta.body.mensagem).to.equal("Login realizado com sucesso!");
     });
-    it('Deve retornar status 404 e mensagem "Usuário não cadastrado." quando usar credenciais não cadastradas', async () => {
+    it(' Deve retornar status 404 e mensagem "Usuário não cadastrado." quando usar credenciais não cadastradas', async () => {
+        const login404 = {
+            username: faker.internet.username(), 
+            password: faker.internet.password(), 
+        }
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/login")
         .set("Content-Type", "application/json")
-        .send({
-          username: "usuario-nao-cadastrado",
-          password: "senha-invalida",
-        });
-      expect(resposta.status).to.equal(404);
-      expect(resposta.body.mensagem).to.equal("Usuário não cadastrado.");
+        .send(login404);
+        expect(resposta.status).to.equal(404);
+        expect(resposta.body.mensagem).to.equal("Usuário não cadastrado.");
     });
-    it('Deve retornar status 401 e mensagem "Credenciais inválidas." quando usar credenciais inválidas', async () => {
+    it('  Deve retornar status 401 e mensagem "Credenciais inválidas." quando usar credenciais inválidas', async () => {
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/login")
         .set("Content-Type", "application/json")
@@ -39,7 +40,7 @@ describe("Login", () => {
       expect(resposta.body.mensagem).to.equal("Credenciais inválidas.");
     });
 
-    it('Deve retornar status 401 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () => {
+    it(' Deve retornar status 401 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () => {
       await request(process.env.BASE_URL)
         .post("/auth/login")
         .set("Content-Type", "application/json")
@@ -67,12 +68,12 @@ describe("Login", () => {
       );
     });
 
-    it('Deve retornar status 400 e mensagem "Usuário e senha são obrigatórios." quando não preencher campo password', async () => {
+    it(' Deve retornar status 400 e mensagem "Usuário e senha são obrigatórios." quando não preencher campo password', async () => {
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/login")
         .set("Content-Type", "application/json")
         .send({
-          username: "usuario1",
+          username: faker.internet.username(),
           password: "",
         });
       expect(resposta.status).to.equal(400);
@@ -82,7 +83,7 @@ describe("Login", () => {
     });
   });
 
-  describe("POST/auth/forgot-password", () => {
+  describe("[forgot] POST/auth/forgot-password", () => {
     it("Deve retornar status 200 quando o lembrete de senha for enviado com sucesso", async () => {
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/forgot-password")
@@ -96,12 +97,13 @@ describe("Login", () => {
       );
     });
     it("Deve retornar status 404 quando o usuário não estiver cadastrado", async () => {
+    const userNotFound = {
+        username: faker.internet.username()
+    }
       const resposta = await request(process.env.BASE_URL)
         .post("/auth/forgot-password")
         .set("Content-Type", "application/json")
-        .send({
-          username: "usuario-nao-cadastrado",
-        });
+        .send(userNotFound)
       expect(resposta.status).to.equal(404);
       expect(resposta.body.mensagem).to.equal("Usuário não cadastrado.");
     });
