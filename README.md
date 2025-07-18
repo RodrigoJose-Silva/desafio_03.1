@@ -58,6 +58,15 @@ npm install
 npm run dev
 ```
 
+## ▶️ Utilizando o run.sh para rodar as suites de testes(em andamento)
+
+Na seu terminal após estar no projeto, dê permissão para rodar o .sh da seguinte forma:
+
+-✅ **Digite**: chmod +x run-tests.sh
+
+Feito isso basta somente digitar: **./run.sh** e começar a utilizar
+
+
 Acesse a API em: `http://localhost:3030/`
 
 ## 📖 Documentação Swagger
