@@ -62,7 +62,7 @@ npm run dev
 
 Na seu terminal após estar no projeto, dê permissão para rodar o .sh da seguinte forma:
 
--✅ **Digite**: chmod +x run-tests.sh
+-✅ **Digite**: chmod +x run.sh
 
 Feito isso basta somente digitar: **./run.sh** e começar a utilizar
 
