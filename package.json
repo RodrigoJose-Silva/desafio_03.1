@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "chai": "^5.2.1",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "mocha": "^11.7.1",
     "supertest": "^7.1.3",
