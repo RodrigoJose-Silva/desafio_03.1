@@ -2,10 +2,11 @@
 
 ## 👥 Integrantes do Desafio 3 - Grupo 5
 
-| Nome         | E-mail                | GitHub                                               |
-| ------------ | --------------------- | ---------------------------------------------------- |
-| Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Exemplo User | exemplo@email.com     | [ExemploGitHub](https://github.com/exemplo)          |
+| Nome         | E-mail                  | GitHub                                               |
+| ------------ | ----------------------- | ---------------------------------------------------- |
+| Rodrigo José | digo.1903@hotmail.com   | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
+| Tiago Silva  | auditor.adhoc@gmail.com | [Tiago Silva](https://github.com/AuditorAdhoc)       |
+| Exemplo User | exemplo@email.com       | [ExemploGitHub](https://github.com/exemplo)          |
 
 ## 📚 Sobre o Projeto
 
