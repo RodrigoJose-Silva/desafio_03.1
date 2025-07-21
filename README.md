@@ -6,6 +6,7 @@
 | ------------ | --------------------- | ---------------------------------------------------- |
 | Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
 | Lucas Tiago | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
+| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Reis Castro](https://github.com/bruno-reis-castro)          |
 
 ## 📚 Sobre o Projeto
 

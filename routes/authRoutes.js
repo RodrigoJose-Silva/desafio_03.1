@@ -25,10 +25,44 @@ const authController = require('../controllers/authController');
  *     responses:
  *       200:
  *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: "Login realizado com sucesso!"
  *       401:
- *         description: Credenciais inválidas ou usuário bloqueado
+ *         description: Credenciais inválidas (senha incorreta)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: "Credenciais inválidas."
+ *       403:
+ *         description: Usuário bloqueado por excesso de tentativas
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: "Usuário bloqueado por excesso de tentativas."
  *       404:
  *         description: Usuário não cadastrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: "Usuário não cadastrado."
  */
 // Rota para login
 router.post('/login', authController.login);
@@ -51,8 +85,24 @@ router.post('/login', authController.login);
  *     responses:
  *       200:
  *         description: Lembrete de senha enviado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 lembrete:
+ *                   type: string
+ *                   example: "Seu lembrete de senha foi encaminhado para o email cadastrado: *******@email.com"
  *       404:
  *         description: Usuário não cadastrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: "Usuário não cadastrado."
  */
 // Rota para lembrete de senha
 router.post('/forgot-password', authController.forgotPassword);
