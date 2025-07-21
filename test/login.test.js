@@ -1,64 +1,53 @@
 const request = require('supertest')
 const { expect } = require('chai')
+const postLogin = require('../fixtures/postLogin.json')
 
 describe('Login', () => {
     describe('POST/auth/login', () => {
-        it('Deve retornar CODE 200 e mensagem "Login realizado com sucesso" quando usar credenciais válidas ', async () =>{
+        it('Deve retornar CODE 200 e mensagem "Login realizado com sucesso" quando usar credenciais válidas ', async () =>{ 
+            const bodyLogin = {...postLogin}
+            bodyLogin.password = "senha123"
             const resposta = await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario1",
-                    'password': "senha123"
-                })
+                .send(bodyLogin)
             expect(resposta.status).to.equal(200);
             expect(resposta.body.mensagem).to.equal("Login realizado com sucesso!")
         })
         it('Deve retornar CODE 404 e mensagem "Usuário não cadastrado." quando usar credenciais não cadastradas', async () =>{
+            const bodyLogin = {...postLogin}
+            bodyLogin.username = "usuario-nao-cadastrado" 
             const resposta = await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario-nao-cadastrado",
-                    'password': "senha-invalida"
-                })
+                .send(bodyLogin)
             expect(resposta.status).to.equal(404);
             expect(resposta.body.mensagem).to.equal("Usuário não cadastrado.")
         })
         it('Deve retornar CODE 401 e mensagem "Credenciais inválidas." quando usar credenciais inválidas', async () =>{
+            const bodyLogin = {...postLogin}
             const resposta = await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario1",
-                    'password': "senha-invalida"
-                })
+                .send(bodyLogin)
             expect(resposta.status).to.equal(401);
             expect(resposta.body.mensagem).to.equal("Credenciais inválidas.")
         })
 
         it('Deve retornar CODE 401 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () =>{
+            const bodyLogin = {...postLogin}
             await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario1",
-                    'password': "senha-invalida"
-                })
+                .send(bodyLogin)
             await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario1",
-                    'password': "senha-invalida"
-                })    
+                .send(bodyLogin)    
             const resposta = await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
-                .send({
-                    'username': "usuario1",
-                    'password': "senha-invalida"
-                })
+                .send(bodyLogin)
             expect(resposta.status).to.equal(401);
             expect(resposta.body.mensagem).to.equal("Usuário bloqueado por excesso de tentativas.")
         })
