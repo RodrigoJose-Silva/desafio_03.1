@@ -5,7 +5,7 @@
 | Nome         | E-mail                | GitHub                                               |
 | ------------ | --------------------- | ---------------------------------------------------- |
 | Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Exemplo User | exemplo@email.com     | [ExemploGitHub](https://github.com/exemplo)          |
+| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Ris Castro](https://github.com/bruno-reis-castro)          |
 
 ## 📚 Sobre o Projeto
 
