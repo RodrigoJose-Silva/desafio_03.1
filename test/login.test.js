@@ -37,7 +37,7 @@ describe('Login', () => {
             expect(resposta.body.mensagem).to.equal("Credenciais inválidas.")
         })
 
-        it('Deve retornar CODE 423 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () =>{
+        it('Deve retornar CODE 401 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () =>{
             await request("http://localhost:3030")
                 .post('/auth/login')
                 .set('Content-Type','application/json')
@@ -59,7 +59,7 @@ describe('Login', () => {
                     'username': "usuario1",
                     'password': "senha-invalida"
                 })
-            expect(resposta.status).to.equal(423);
+            expect(resposta.status).to.equal(401);
             expect(resposta.body.mensagem).to.equal("Usuário bloqueado por excesso de tentativas.")
         })
 
