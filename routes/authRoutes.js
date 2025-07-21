@@ -43,7 +43,7 @@ const authController = require('../controllers/authController');
  *                 mensagem:
  *                   type: string
  *                   example: "Credenciais inválidas."
- *       423:
+ *       403:
  *         description: Usuário bloqueado por excesso de tentativas
  *         content:
  *           application/json:
