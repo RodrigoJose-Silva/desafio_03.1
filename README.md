@@ -5,7 +5,7 @@
 | Nome         | E-mail                | GitHub                                               |
 | ------------ | --------------------- | ---------------------------------------------------- |
 | Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Exemplo User | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
+| Lucas Tiago | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
 
 ## 📚 Sobre o Projeto
 
@@ -45,6 +45,7 @@ app.js                     # Ponto de entrada da aplicação
 - 🔒 Bloqueio após 3 tentativas inválidas
 - 📨 Lembrete de senha
 - 👤 Usuário não cadastrado
+- 📊 Report de relátorio
 
 ## 📦 Instalação
 
