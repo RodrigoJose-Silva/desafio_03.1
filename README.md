@@ -5,7 +5,8 @@
 | Nome         | E-mail                | GitHub                                               |
 | ------------ | --------------------- | ---------------------------------------------------- |
 | Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Ris Castro](https://github.com/bruno-reis-castro)          |
+| Lucas Tiago | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
+| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Reis Castro](https://github.com/bruno-reis-castro)          |
 
 ## 📚 Sobre o Projeto
 
@@ -45,6 +46,7 @@ app.js                     # Ponto de entrada da aplicação
 - 🔒 Bloqueio após 3 tentativas inválidas
 - 📨 Lembrete de senha
 - 👤 Usuário não cadastrado
+- 📊 Report de relátorio
 
 ## 📦 Instalação
 
@@ -57,6 +59,15 @@ npm install
 ```bash
 npm run dev
 ```
+
+## ▶️ Utilizando o run.sh para rodar as suites de testes(em andamento)
+
+Na seu terminal após estar no projeto, dê permissão para rodar o .sh da seguinte forma:
+
+-✅ **Digite**: chmod +x run.sh
+
+Feito isso basta somente digitar: **./run.sh** e começar a utilizar
+
 
 Acesse a API em: `http://localhost:3030/`
 
