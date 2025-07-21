@@ -82,7 +82,7 @@ describe(" [login] Login", () => {
       );
     });
   });
-
+ 
   describe("[forgot] POST/auth/forgot-password", () => {
     it("Deve retornar status 200 quando o lembrete de senha for enviado com sucesso", async () => {
       const resposta = await request(process.env.BASE_URL)

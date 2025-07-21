@@ -35,7 +35,7 @@ exibir_mensagem_boas_vindas() {
 }
 exibir_mensagem_boas_vindas
 # PS3=$'\nDigite o número da opção desejada: '
-options=("Todos os testes" "Testes de Login" "Testes de forgot" "Sair")
+options=("Todos os Testes"  "Gerar Report" "Sair")
 
 select opt in "${options[@]}"
 do
@@ -45,14 +45,9 @@ do
             npm test
             break
             ;;
-        "Testes de Login")
-            echo "🔍 Executando testes com tag [login]..."
-            npm test --grep "\[login\]"
-            break
-            ;;
-        "Testes de forgot")
-            echo "✅ Executando testes com tag [sucesso]..."
-            npm test --grep "\[forgot\]"
+        "Gerar Report")
+            echo "📊 Gerando Relátorios...."
+            npm run test-html
             break
             ;;
         "Sair")
