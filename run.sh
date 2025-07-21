@@ -34,7 +34,6 @@ exibir_mensagem_boas_vindas() {
     echo "================================================================" 
 }
 exibir_mensagem_boas_vindas
-# PS3=$'\nDigite o número da opção desejada: '
 options=("Todos os Testes"  "Gerar Report" "Sair")
 
 select opt in "${options[@]}"
@@ -56,5 +55,4 @@ do
             ;;
         *) echo "⚠️ Vish!!! $name Opção inválida! Tente novamente.";;
     esac
-     read -p "Pressione Enter para retornar ao inicio..."
 done
