@@ -2,11 +2,12 @@
 
 ## 👥 Integrantes do Desafio 3 - Grupo 5
 
-| Nome         | E-mail                | GitHub                                               |
-| ------------ | --------------------- | ---------------------------------------------------- |
-| Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Lucas Tiago | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
-| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Reis Castro](https://github.com/bruno-reis-castro)          |
+| Nome         | E-mail                      | GitHub                                               |
+| ------------ | --------------------------- | ---------------------------------------------------- |
+| Rodrigo José | digo.1903@hotmail.com       | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
+| Tiago Silva  | auditor.adhoc@gmail.com     | [Tiago Silva](https://github.com/AuditorAdhoc)       |
+| Lucas Tiago  | ltsantiago88@egmailmail.com | [Lucas Tiago](https://github.com/ltsantiago)         |
+| Bruno Castro | bruno.reis.castro1@gmail.com| [Bruno Reis Castro](https://github.com/bruno-reis-castro)  |
 
 ## 📚 Sobre o Projeto
 
