@@ -2,11 +2,11 @@
 
 ## 👥 Integrantes do Desafio 3 - Grupo 5
 
-| Nome         | E-mail                | GitHub                                               |
-| ------------ | --------------------- | ---------------------------------------------------- |
-| Rodrigo José | digo.1903@hotmail.com | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Lucas Tiago | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)  |        |
-| Bruno Castro | bruno.reis.castro1@gmail.com     | [Bruno Reis Castro](https://github.com/bruno-reis-castro)          |
+| Nome         | E-mail                       | GitHub                                                    |
+| ------------ | ---------------------------- | --------------------------------------------------------- | --- |
+| Rodrigo José | digo.1903@hotmail.com        | [Rodrigo José](https://github.com/RodrigoJose-Silva)      |
+| Lucas Tiago  | ltsantiago88@egmailmail.com  | [Lucas Tiago](https://github.com/ltsantiago)              |     |
+| Bruno Castro | bruno.reis.castro1@gmail.com | [Bruno Reis Castro](https://github.com/bruno-reis-castro) |
 
 ## 📚 Sobre o Projeto
 
@@ -68,6 +68,15 @@ Na seu terminal após estar no projeto, dê permissão para rodar o .sh da segui
 
 Feito isso basta somente digitar: **./run.sh** e começar a utilizar
 
+### Execução automatizada dos testes (sem interação)
+
+Para rodar todos os testes de forma não-interativa (ex: em CI/CD ou sem precisar responder perguntas), use:
+
+```bash
+./run.sh --ci
+```
+
+O script irá iniciar o servidor, aguardar até que esteja pronto e executar todos os testes automaticamente.
 
 Acesse a API em: `http://localhost:3030/`
 
@@ -85,6 +94,32 @@ Acesse a documentação interativa em: [http://localhost:3030/api-docs](http://l
 - Projeto para fins de estudo, não utilizar em produção.
 - Desenvolvido com boas práticas de Clean Code.
 - Branch principal: `main`
+
+---
+
+## 📁 Pastas e Arquivos do Projeto
+
+| Caminho/Arquivo                  | Descrição                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------- |
+| `app.js`                         | Ponto de entrada da aplicação. Configura o Express, rotas, middleware e Swagger.         |
+| `controllers/authController.js`  | Controller responsável por receber requisições HTTP de autenticação e lembrete de senha. |
+| `services/authService.js`        | Lógica de negócio de autenticação, controle de tentativas e lembrete de senha.           |
+| `repositories/userRepository.js` | Simula um banco de dados em memória e fornece métodos para buscar usuários.              |
+| `routes/authRoutes.js`           | Define as rotas de autenticação (`/auth/login`, `/auth/forgot-password`).                |
+| `fixtures/postLogin.json`        | Dados de exemplo para testes automatizados de login.                                     |
+| `test/login.test.js`             | Testes automatizados (Mocha/Chai/Supertest) para login e lembrete de senha.              |
+| `run.sh`                         | Script para automatizar execução do servidor, testes e geração de relatórios.            |
+| `mochawesome-report/`            | Pasta gerada automaticamente com relatórios HTML/JSON dos testes.                        |
+
+### Descrição das principais pastas:
+
+- **controllers/**: Contém os controllers responsáveis por receber e tratar as requisições HTTP.
+- **services/**: Implementa as regras de negócio da aplicação.
+- **repositories/**: Responsável pelo acesso e manipulação dos dados dos usuários (em memória).
+- **routes/**: Define as rotas/endpoints da API.
+- **fixtures/**: Armazena dados de exemplo para uso nos testes automatizados.
+- **test/**: Contém os testes automatizados da aplicação.
+- **mochawesome-report/**: Pasta de saída dos relatórios de testes gerados automaticamente.
 
 ---
 
