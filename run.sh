@@ -21,7 +21,7 @@ function wait_for_server() {
     local attempt=1
     echo "================================================================"
     echo "⏳ Aguardando o servidor iniciar..."
-    until curl --output /dev/null --silent --head --fail "$url"; do
+    until powershell -Command "(Invoke-WebRequest -Uri $url -UseBasicParsing).StatusCode -eq 200" 2>$null; do
         if [ $attempt -ge $max_attempts ]; then
             echo "❌ Servidor não respondeu após $max_attempts tentativas."
             exit 1
