@@ -74,7 +74,7 @@ Feito isso basta somente digitar: **./run.sh** e começar a utilizar
 Para rodar todos os testes de forma não-interativa (ex: em CI/CD ou sem precisar responder perguntas), use:
 
 ```bash
-./run.sh --ci
+./run.bat
 ```
 
 O script irá iniciar o servidor, aguardar até que esteja pronto e executar todos os testes automaticamente.
