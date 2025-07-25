@@ -1,21 +1,29 @@
-name: Continous Integrations
+name: CI - Testes API - Desafio 03
 
 on:
   push:
-    branches:
-      - Desafio03
+    branches: [main, Desafio03]
   pull_request:
-    branches:
-      - Desafio03
-      - main
+    branches: [main, Desafio03]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout do código
         uses: actions/checkout@v3
-      - name: Instalar dependências
+
+      - name: ⚙️ Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Instalar dependências
         run: npm install
-      - name: Rodar os testes
+
+      - name: 🧪 Criar arquivo .env com BASE_URL
+        run: echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
+
+      - name: 🧪 Rodar testes com Mocha
         run: npm test
