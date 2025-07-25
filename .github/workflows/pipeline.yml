@@ -1,4 +1,4 @@
-name: Continous Integrations
+name: Continuous Integration
 
 on:
   push:
@@ -11,13 +11,12 @@ on:
       - main
 
 jobs:
-  build-and-test:
   test:
     runs-on: ubuntu-latest
     env:
       BASE_URL: ${{ secrets.BASE_URL }}
 
-     steps:
+    steps:
       - name: ⬇️ Checkout do código
         uses: actions/checkout@v3
 
