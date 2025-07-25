@@ -1,16 +1,22 @@
-name: CI - Testes API - Desafio 03
+name: Continous Integrations
 
 on:
   push:
-    branches: [main, Desafio03]
+    branches:
+      - Desafio03
+      - main
   pull_request:
-    branches: [main, Desafio03]
+    branches:
+      - Desafio03
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: ${{ secrets.BASE_URL }}
 
-    steps:
+     steps:
       - name: ⬇️ Checkout do código
         uses: actions/checkout@v3
 
