@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { expect } = require("chai");
+import { expect } from 'chai';
 const { faker } = require('@faker-js/faker');
 require("dotenv").config();
 
