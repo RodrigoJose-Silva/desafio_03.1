@@ -1,7 +1,9 @@
-const request = require("supertest");
-const { expect } = require("chai");
-const { faker } = require('@faker-js/faker');
-require("dotenv").config();
+import { expect } from 'chai'
+import request from 'supertest'
+import dotenv from 'dotenv'
+dotenv.config()
+import { faker } from '@faker-js/faker';
+
 
 describe(" [login] Login", () => {
   describe(" POST/auth/login", () => {
