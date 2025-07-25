@@ -55,21 +55,30 @@ app.js                     # Ponto de entrada da aplicação
 npm install
 ```
 
-## ▶️ Como rodar
+## ▶️ Como rodar o servidor
 
 ```bash
-npm run dev
+npm start
 ```
 
-## ▶️ Utilizando o run.sh para rodar as suites de testes(em andamento)
+O servidor será iniciado na porta padrão `3030`. Acesse a API em: http://localhost:3030/
 
-Na seu terminal após estar no projeto, dê permissão para rodar o .sh da seguinte forma:
+## ▶️ Como rodar os testes automatizados
 
--✅ **Digite**: chmod +x run.sh
+### Para usuários **Linux/Mac**
 
-Feito isso basta somente digitar: **./run.sh** e começar a utilizar
+Utilize o script `run.sh` para automatizar a execução do servidor e dos testes:
 
-### Execução automatizada dos testes (sem interação)
+1. Dê permissão de execução ao script:
+   ```bash
+   chmod +x run.sh
+   ```
+2. Execute:
+   ```bash
+   ./run.sh
+   ```
+
+#### Execução automatizada dos testes (sem interação)
 
 Para rodar todos os testes de forma não-interativa (ex: em CI/CD ou sem precisar responder perguntas), use:
 
@@ -79,7 +88,25 @@ Para rodar todos os testes de forma não-interativa (ex: em CI/CD ou sem precisa
 
 O script irá iniciar o servidor, aguardar até que esteja pronto e executar todos os testes automaticamente.
 
-Acesse a API em: `http://localhost:3030/`
+### Para usuários **Windows**
+
+Utilize o script `run.bat` para automatizar a execução do servidor e dos testes:
+
+1. No Prompt de Comando (cmd), execute:
+   ```bat
+   run.bat
+   ```
+
+O script irá:
+- Encerrar processos antigos do Node rodando `app.js`.
+- Iniciar o servidor em background.
+- Aguardar o servidor responder em `http://localhost:3030/`.
+- Executar os testes automatizados.
+- Encerrar o servidor ao final dos testes.
+
+> **Dica:** Você também pode rodar manualmente:
+> 1. `npm start` (em um terminal)
+> 2. `npm test` (em outro terminal)
 
 ## 📖 Documentação Swagger
 
@@ -109,7 +136,8 @@ Acesse a documentação interativa em: [http://localhost:3030/api-docs](http://l
 | `routes/authRoutes.js`           | Define as rotas de autenticação (`/auth/login`, `/auth/forgot-password`).                |
 | `fixtures/postLogin.json`        | Dados de exemplo para testes automatizados de login.                                     |
 | `test/login.test.js`             | Testes automatizados (Mocha/Chai/Supertest) para login e lembrete de senha.              |
-| `run.sh`                         | Script para automatizar execução do servidor, testes e geração de relatórios.            |
+| `run.sh`                         | Script para automatizar execução do servidor, testes e geração de relatórios (Linux/Mac).|
+| `run.bat`                        | Script para automatizar execução do servidor e testes no Windows.                        |
 | `mochawesome-report/`            | Pasta gerada automaticamente com relatórios HTML/JSON dos testes.                        |
 
 ### Descrição das principais pastas:
