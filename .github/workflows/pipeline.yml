@@ -1,11 +1,13 @@
 name: Continous Integrations
 
 on:
-push:
-  branches: ["Desafio03", "main"]
-pull_request:
-  branches:
-    - main
+  push:
+    branches:
+      - Desafio03
+  pull_request:
+    branches:
+      - Desafio03
+      - main
 
 jobs:
   test:
