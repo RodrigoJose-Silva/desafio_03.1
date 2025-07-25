@@ -2,19 +2,13 @@ name: Continuous Integration
 
 on:
   push:
-    branches:
-      - Desafio03
-      - main
+    branches: [main, Desafio03]
   pull_request:
-    branches:
-      - Desafio03
-      - main
+    branches: [main, Desafio03]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      BASE_URL: ${{ secrets.BASE_URL }}
 
     steps:
       - name: ⬇️ Checkout do código
