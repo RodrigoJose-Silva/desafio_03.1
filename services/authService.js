@@ -26,7 +26,7 @@ exports.login = async (username, password) => {
     }
     // Verifica se o usuário está bloqueado
     if (loginAttempts[username].blocked) {
-        return { status: 403, body: { mensagem: 'Usuário bloqueado por excesso de tentativas.' } };
+        return { status: 401, body: { mensagem: 'Usuário bloqueado por excesso de tentativas.' } };
     }
     // Verifica se a senha está correta
     if (user.password === password) {

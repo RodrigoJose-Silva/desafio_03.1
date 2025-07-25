@@ -1,0 +1,21 @@
+name: Continous Integrations
+
+on:
+push:
+  branches: [feature/cicd]
+pull_request:
+  branches: ["main"]
+
+jobs:
+  continous-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar os testes
+        run: npm test

@@ -39,7 +39,7 @@ options=("Todos os Testes"  "Gerar Report" "Sair")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Todos os testes")
+        "Todos os Testes")
             echo "▶️ Executando todos os testes..."
             npm test
             break
