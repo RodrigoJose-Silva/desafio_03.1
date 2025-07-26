@@ -56,4 +56,44 @@ exports.forgotPassword = async (username) => {
         return { status: 404, body: { mensagem: 'Usuário não cadastrado.' } };
     }
     return { status: 200, body: { lembrete: user.reminder } };
+};
+
+/**
+ * Cadastra um novo usuário.
+ * @param {string} username
+ * @param {string} password
+ * @param {string} email
+ * @returns {Promise<object>} Resultado do cadastro (status e mensagem)
+ */
+exports.registerUser = async (username, password, email) => {
+    if (!username || !password || !email) {
+        return { status: 400, body: { mensagem: 'Todos os campos são obrigatórios.' } };
+    }
+    // Validação de username
+    if (username.length < 3 || username.length > 8) {
+        return { status: 400, body: { mensagem: 'O nome de usuário deve conter entre 3 e 8 caracteres.' } };
+    }
+    // Validação de senha
+    if (password.length < 5 || password.length > 8) {
+        return { status: 400, body: { mensagem: 'A senha deve conter entre 5 e 8 caracteres.' } };
+    }
+    // Senha deve conter letras e números
+    if (!(/[a-zA-Z]/.test(password) && /[0-9]/.test(password))) {
+        return { status: 400, body: { mensagem: 'A senha deve conter letras e números.' } };
+    }
+    // Validação de email
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email)) {
+        return { status: 400, body: { mensagem: 'O email informado é inválido. Deve conter apenas um @, domínio, e não pode começar ou terminar com @ ou ponto.' } };
+    }
+    if (userRepository.findByUsername(username)) {
+        return { status: 409, body: { mensagem: 'Usuário já cadastrado.' } };
+    }
+    const reminder = `Seu lembrete de senha foi encaminhado para o email cadastrado: *******@email.com`;
+    const success = userRepository.addUser({ username, password, email, reminder });
+    if (success) {
+        return { status: 201, body: { mensagem: 'Usuário cadastrado com sucesso!' } };
+    } else {
+        return { status: 409, body: { mensagem: 'Usuário já cadastrado.' } };
+    }
 }; 

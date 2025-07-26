@@ -45,9 +45,10 @@ app.js                     # Ponto de entrada da aplicação
 - ✅ Validação de login de sucesso
 - ❌ Validação de login inválido
 - 🔒 Bloqueio após 3 tentativas inválidas
-- 📨 Lembrete de senha
+- 📧 Lembrete de senha
 - 👤 Usuário não cadastrado
-- 📊 Report de relátorio
+- 📊 Report de relatório
+- 📝 Cadastro de novo usuário
 
 ## 📦 Instalação
 
@@ -116,6 +117,13 @@ Acesse a documentação interativa em: [http://localhost:3030/api-docs](http://l
 
 - `POST /auth/login` - Realiza o login do usuário
 - `POST /auth/forgot-password` - Envia lembrete de senha para o usuário
+- `POST /auth/register` - Cadastra um novo usuário
+  - Regras:
+    - Não é possível cadastrar um usuário já cadastrado (duplicado)
+    - O nome de usuário deve conter entre 3 e 8 caracteres
+    - A senha deve conter entre 5 e 8 caracteres, obrigatoriamente contendo letras e números
+    - O e-mail deve ser válido (apenas um @, domínio, etc)
+    - Mensagem de erro: O email informado é inválido. Deve conter apenas um @, domínio, e não pode começar ou terminar com @ ou ponto.
 
 ## 📝 Observações
 
@@ -133,7 +141,7 @@ Acesse a documentação interativa em: [http://localhost:3030/api-docs](http://l
 | `controllers/authController.js`  | Controller responsável por receber requisições HTTP de autenticação e lembrete de senha. |
 | `services/authService.js`        | Lógica de negócio de autenticação, controle de tentativas e lembrete de senha.           |
 | `repositories/userRepository.js` | Simula um banco de dados em memória e fornece métodos para buscar usuários.              |
-| `routes/authRoutes.js`           | Define as rotas de autenticação (`/auth/login`, `/auth/forgot-password`).                |
+| `routes/authRoutes.js`           | Define as rotas de autenticação (`/auth/login`, `/auth/forgot-password`, `/auth/register`).                |
 | `fixtures/postLogin.json`        | Dados de exemplo para testes automatizados de login.                                     |
 | `test/login.test.js`             | Testes automatizados (Mocha/Chai/Supertest) para login e lembrete de senha.              |
 | `run.sh`                         | Script para automatizar execução do servidor, testes e geração de relatórios (Linux/Mac).|
