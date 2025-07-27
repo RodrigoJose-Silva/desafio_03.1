@@ -36,4 +36,16 @@ exports.forgotPassword = (req, res) => {
     return authService.forgotPassword(username)
         .then(result => res.status(result.status).json(result.body))
         .catch(err => res.status(500).json({ mensagem: 'Erro interno do servidor.' }));
+};
+
+/**
+ * Cadastra um novo usuário.
+ * - Valida dados obrigatórios.
+ * - Chama o serviço de cadastro.
+ */
+exports.registerUser = (req, res) => {
+    const { username, password, email } = req.body;
+    return authService.registerUser(username, password, email)
+        .then(result => res.status(result.status).json(result.body))
+        .catch(err => res.status(500).json({ mensagem: 'Erro interno do servidor.' }));
 }; 

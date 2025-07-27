@@ -24,4 +24,17 @@ const users = [
  */
 exports.findByUsername = (username) => {
     return users.find((u) => u.username === username);
+};
+
+/**
+ * Adiciona um novo usuário ao array de usuários.
+ * @param {object} user - Objeto do usuário a ser adicionado.
+ * @returns {boolean} true se cadastrado, false se username já existe.
+ */
+exports.addUser = (user) => {
+    if (users.find((u) => u.username === user.username)) {
+        return false; // Usuário já existe
+    }
+    users.push(user);
+    return true;
 }; 

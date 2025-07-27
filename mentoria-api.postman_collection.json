@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "mentoria-api-collection-001",
+    "name": "Mentoria API - Desafio 3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Coleção de testes para a API de Gestão de Login do Desafio 3."
+  },
+  "item": [
+    {
+      "name": "Cadastrar novo usuário",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"usuario3\",\n  \"password\": \"abc123\",\n  \"email\": \"usuario3@email.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3030/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3030",
+          "path": ["auth", "register"]
+        }
+      },
+      "response": [
+        {
+          "name": "Sucesso",
+          "originalRequest": {},
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Usuário cadastrado com sucesso!\"\n}"
+        },
+        {
+          "name": "Erro de validação",
+          "originalRequest": {},
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Todos os campos são obrigatórios.\\nO nome de usuário deve conter entre 3 e 8 caracteres.\\nA senha deve conter entre 5 e 8 caracteres.\\nA senha deve conter letras e números.\\nO email informado é inválido. Deve conter apenas um @, domínio, e não pode começar ou terminar com @ ou ponto.\\n\"\n}"
+        },
+        {
+          "name": "Usuário já cadastrado",
+          "originalRequest": {},
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Usuário já cadastrado.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Login do usuário",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"usuario3\",\n  \"password\": \"abc123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3030/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3030",
+          "path": ["auth", "login"]
+        }
+      },
+      "response": [
+        {
+          "name": "Sucesso",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Login realizado com sucesso!\"\n}"
+        },
+        {
+          "name": "Credenciais inválidas",
+          "originalRequest": {},
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Credenciais inválidas.\"\n}"
+        },
+        {
+          "name": "Usuário bloqueado",
+          "originalRequest": {},
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Usuário bloqueado por excesso de tentativas.\"\n}"
+        },
+        {
+          "name": "Usuário não cadastrado",
+          "originalRequest": {},
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Usuário não cadastrado.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Lembrete de senha",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"usuario3\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3030/auth/forgot-password",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3030",
+          "path": ["auth", "forgot-password"]
+        }
+      },
+      "response": [
+        {
+          "name": "Sucesso",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"lembrete\": \"Seu lembrete de senha foi encaminhado para o email cadastrado: *******@email.com\"\n}"
+        },
+        {
+          "name": "Usuário não cadastrado",
+          "originalRequest": {},
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"mensagem\": \"Usuário não cadastrado.\"\n}"
+        }
+      ]
+    }
+  ]
+} 
