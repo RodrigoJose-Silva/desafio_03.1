@@ -9,16 +9,22 @@ const authService = require('../services/authService');
  * - Bloqueia o usuário após 3 tentativas inválidas.
  * - Retorna mensagens apropriadas para cada caso.
  */
-exports.login = (req, res) => {
-    const { username, password } = req.body;
-    // Verifica se os campos obrigatórios foram enviados
-    if (!username || !password) {
-        return res.status(400).json({ mensagem: 'Usuário e senha são obrigatórios.' });
+exports.login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        
+        // Verifica se os campos obrigatórios foram enviados
+        if (!username || !password) {
+            return res.status(400).json({ mensagem: 'Usuário e senha são obrigatórios.' });
+        }
+        
+        // Chama o serviço de autenticação
+        const result = await authService.login(username, password);
+        return res.status(result.status).json(result.body);
+    } catch (error) {
+        console.error('Erro no controller de login:', error);
+        return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
     }
-    // Chama o serviço de autenticação
-    return authService.login(username, password)
-        .then(result => res.status(result.status).json(result.body))
-        .catch(err => res.status(500).json({ mensagem: 'Erro interno do servidor.' }));
 };
 
 /**
@@ -26,16 +32,22 @@ exports.login = (req, res) => {
  * - Retorna lembrete se usuário existir.
  * - Retorna erro se usuário não cadastrado.
  */
-exports.forgotPassword = (req, res) => {
-    const { username } = req.body;
-    // Verifica se o campo obrigatório foi enviado
-    if (!username) {
-        return res.status(400).json({ mensagem: 'Usuário é obrigatório.' });
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { username } = req.body;
+        
+        // Verifica se o campo obrigatório foi enviado
+        if (!username) {
+            return res.status(400).json({ mensagem: 'Usuário é obrigatório.' });
+        }
+        
+        // Chama o serviço de lembrete de senha
+        const result = await authService.forgotPassword(username);
+        return res.status(result.status).json(result.body);
+    } catch (error) {
+        console.error('Erro no controller de lembrete de senha:', error);
+        return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
     }
-    // Chama o serviço de lembrete de senha
-    return authService.forgotPassword(username)
-        .then(result => res.status(result.status).json(result.body))
-        .catch(err => res.status(500).json({ mensagem: 'Erro interno do servidor.' }));
 };
 
 /**
@@ -43,9 +55,15 @@ exports.forgotPassword = (req, res) => {
  * - Valida dados obrigatórios.
  * - Chama o serviço de cadastro.
  */
-exports.registerUser = (req, res) => {
-    const { username, password, email } = req.body;
-    return authService.registerUser(username, password, email)
-        .then(result => res.status(result.status).json(result.body))
-        .catch(err => res.status(500).json({ mensagem: 'Erro interno do servidor.' }));
+exports.registerUser = async (req, res) => {
+    try {
+        const { username, password, email } = req.body;
+        
+        // Chama o serviço de cadastro
+        const result = await authService.registerUser(username, password, email);
+        return res.status(result.status).json(result.body);
+    } catch (error) {
+        console.error('Erro no controller de cadastro:', error);
+        return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
+    }
 }; 
