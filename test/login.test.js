@@ -2,13 +2,14 @@ const request = require('supertest')
 const { expect } = require('chai')
 require("dotenv").config();
 const postLogin = require('../fixtures/postLogin.json')
+const app = require('../app')
 
 describe('Login', () => {
     describe('POST/auth/login', () => {
         it('Deve retornar CODE 200 e mensagem "Login realizado com sucesso" quando usar credenciais válidas ', async () => {
             const bodyLogin = { ...postLogin }
             bodyLogin.password = "senha123"
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
@@ -18,7 +19,7 @@ describe('Login', () => {
         it('Deve retornar CODE 404 e mensagem "Usuário não cadastrado." quando usar credenciais não cadastradas', async () => {
             const bodyLogin = { ...postLogin }
             bodyLogin.username = "usuario-nao-cadastrado"
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
@@ -27,7 +28,7 @@ describe('Login', () => {
         })
         it('Deve retornar CODE 401 e mensagem "Credenciais inválidas." quando usar credenciais inválidas', async () => {
             const bodyLogin = { ...postLogin }
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
@@ -37,15 +38,15 @@ describe('Login', () => {
 
         it('Deve retornar CODE 403 e mensagem "Usuário bloqueado por excesso de tentativas." quando usar credenciais inválidas por 3 tentativas', async () => {
             const bodyLogin = { ...postLogin }
-            await request(process.env.BASE_URL)
+            await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
-            await request(process.env.BASE_URL)
+            await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/login')
                 .set('Content-Type', 'application/json')
                 .send(bodyLogin)
@@ -58,7 +59,7 @@ describe('Login', () => {
 
     describe('POST/auth/forgot-password', () => {
         it('Deve retornar CODE 200 quando o lembrete de senha for enviado com sucesso', async () => {
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/forgot-password')
                 .set('Content-Type', 'application/json')
                 .send({
@@ -68,7 +69,7 @@ describe('Login', () => {
             expect(resposta.body.lembrete).to.equal("Seu lembrete de senha foi encaminhado para o email cadastrado: *******@email.com")
         })
         it('Deve retornar CODE 404 quando o usuário não estiver cadastrado', async () => {
-            const resposta = await request(process.env.BASE_URL)
+            const resposta = await request(app)
                 .post('/auth/forgot-password')
                 .set('Content-Type', 'application/json')
                 .send({

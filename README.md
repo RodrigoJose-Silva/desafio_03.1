@@ -1,167 +1,266 @@
-# 🚀 API de Gestão de Login
+# Sistema de Gestão de Login - Aplicação Web Responsiva
 
-## 👥 Integrantes do Desafio 3 - Grupo 5
+Uma aplicação web completa para gestão de login, desenvolvida para estudos de teste de software. A aplicação inclui interface responsiva, API RESTful e banco de dados MongoDB.
 
-| Nome         | E-mail                      | GitHub                                               |
-| ------------ | --------------------------- | ---------------------------------------------------- |
-| Rodrigo José | digo.1903@hotmail.com       | [Rodrigo José](https://github.com/RodrigoJose-Silva) |
-| Tiago Silva  | auditor.adhoc@gmail.com     | [Tiago Silva](https://github.com/AuditorAdhoc)       |
-| Lucas Tiago  | ltsantiago88@egmailmail.com | [Lucas Tiago](https://github.com/ltsantiago)         |
-| Bruno Castro | bruno.reis.castro1@gmail.com| [Bruno Reis Castro](https://github.com/bruno-reis-castro)  |
+## 🚀 Funcionalidades
 
-## 📚 Sobre o Projeto
+### Autenticação
+- ✅ **Login com validação** - Sistema de autenticação seguro
+- ✅ **Bloqueio após 3 tentativas** - Proteção contra ataques de força bruta
+- ✅ **Validação de usuário não cadastrado** - Tratamento de usuários inexistentes
+- ✅ **Lembrete de senha** - Recuperação de credenciais
 
-Este projeto é uma API Rest para gestão de Login, desenvolvida para fins de estudo de testes de software na **MENTORIA 2.0** ministrada por Julio de Lima.
+### Cadastro
+- ✅ **Registro de novos usuários** - Formulário completo com validações
+- ✅ **Validação de dados** - Regras específicas para usuário, senha e email
+- ✅ **Verificação de usuário único** - Prevenção de duplicatas
 
-- Não utiliza banco de dados, apenas armazenamento em memória.
-- Comunicação via JSON.
-- Documentação interativa via Swagger.
-- Estrutura em camadas (Controller, Service, Repository).
+### Interface Web
+- ✅ **Design responsivo** - Funciona em desktop, tablet e mobile
+- ✅ **Tailwind CSS** - Framework moderno para estilização
+- ✅ **Toast notifications** - Feedback visual para o usuário
+- ✅ **Validação em tempo real** - Feedback imediato nos formulários
+- ✅ **Acessibilidade** - Seguindo boas práticas de UX/UI
 
-## 🏗️ Estrutura do Projeto
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **MongoDB** - Banco de dados NoSQL
+- **Mongoose** - ODM para MongoDB
+- **bcryptjs** - Criptografia de senhas
+
+### Frontend
+- **HTML5** - Estrutura semântica
+- **Tailwind CSS** - Framework CSS utilitário
+- **JavaScript ES6+** - Funcionalidades interativas
+- **Toastify** - Notificações toast
+- **Font Awesome** - Ícones
+
+### DevOps
+- **Docker** - Containerização
+- **Docker Compose** - Orquestração de containers
+- **Swagger** - Documentação da API
+
+## 📁 Estrutura do Projeto
 
 ```
-controllers/
-  - authController.js      # Recebe requisições HTTP, valida dados e chama o service
-services/
-  - authService.js         # Lógica de negócio de autenticação e lembrete de senha
-repositories/
-  - userRepository.js      # Acesso e manipulação dos dados dos usuários (em memória)
-routes/
-  - authRoutes.js          # Rotas de autenticação
-app.js                     # Ponto de entrada da aplicação
+desafio_03.1/
+├── app.js                          # Arquivo principal da aplicação
+├── package.json                    # Dependências e scripts
+├── Dockerfile                      # Configuração Docker
+├── docker-compose.yml             # Orquestração de containers
+├── tailwind.config.js             # Configuração Tailwind CSS
+├── README.md                      # Documentação
+├── controllers/                   # Controladores da API
+│   └── authController.js
+├── services/                      # Lógica de negócio
+│   └── authService.js
+├── repositories/                  # Acesso a dados
+│   └── userRepository.js
+├── models/                        # Modelos do MongoDB
+│   └── User.js
+├── routes/                        # Rotas da API
+│   └── authRoutes.js
+├── test/                         # Testes automatizados
+│   └── login.test.js
+├── public/                       # Arquivos estáticos
+│   ├── index.html                # Página principal
+│   ├── login.html                # Página de login
+│   ├── register.html             # Página de cadastro
+│   ├── forgot-password.html      # Página de recuperação
+│   ├── css/
+│   │   ├── input.css            # CSS de entrada Tailwind
+│   │   └── output.css           # CSS compilado
+│   └── js/
+│       ├── main.js              # JavaScript principal
+│       ├── login.js             # JS específico login
+│       ├── register.js          # JS específico cadastro
+│       └── forgot-password.js   # JS específico recuperação
+└── fixtures/                     # Dados de teste
+    └── postLogin.json
 ```
 
-## 🔄 Fluxo de Autenticação
+## 🚀 Como Executar
 
-1. O controller recebe a requisição HTTP e valida os dados.
-2. O controller chama o método apropriado do service.
-3. O service executa a lógica de negócio e consulta o repository para acessar os dados.
-4. O repository retorna os dados necessários ao service.
-5. O service retorna o resultado ao controller, que responde ao cliente.
+### Pré-requisitos
+- Node.js 18+ 
+- Docker e Docker Compose (opcional)
+- MongoDB (se não usar Docker)
 
-## 🛠️ Funcionalidades
+### Opção 1: Execução Local
 
-- ✅ Validação de login de sucesso
-- ❌ Validação de login inválido
-- 🔒 Bloqueio após 3 tentativas inválidas
-- 📧 Lembrete de senha
-- 👤 Usuário não cadastrado
-- 📊 Report de relatório
-- 📝 Cadastro de novo usuário
-
-## 📦 Instalação
-
-```bash
-npm install
-```
-
-## ▶️ Como rodar o servidor
-
-```bash
-npm start
-```
-
-O servidor será iniciado na porta padrão `3030`. Acesse a API em: http://localhost:3030/
-
-## ▶️ Como rodar os testes automatizados
-
-### Para usuários **Linux/Mac**
-
-Utilize o script `run.sh` para automatizar a execução do servidor e dos testes:
-
-1. Dê permissão de execução ao script:
+1. **Clone o repositório**
    ```bash
-   chmod +x run.sh
+   git clone <url-do-repositorio>
+   cd desafio_03.1
    ```
-2. Execute:
+
+2. **Instale as dependências**
    ```bash
-   ./run.sh
+   npm install
    ```
 
-#### Execução automatizada dos testes (sem interação)
+3. **Configure as variáveis de ambiente**
+   ```bash
+   cp env.example .env
+   # Edite o arquivo .env com suas configurações
+   ```
 
-Para rodar todos os testes de forma não-interativa (ex: em CI/CD ou sem precisar responder perguntas), use:
+4. **Compile o CSS**
+   ```bash
+   npm run build:css-prod
+   ```
 
+5. **Inicie o servidor**
+   ```bash
+   npm start
+   # ou para desenvolvimento
+   npm run dev
+   ```
+
+### Opção 2: Execução com Docker (Recomendado)
+
+1. **Clone o repositório**
+   ```bash
+   git clone <url-do-repositorio>
+   cd desafio_03.1
+   ```
+
+2. **Execute com Docker Compose**
+   ```bash
+   docker-compose up --build -d
+   ```
+
+3. **Acesse a aplicação**
+   - Aplicação: http://localhost:3030
+   - API Docs: http://localhost:3030/api-docs
+   - MongoDB Express: http://localhost:8081
+
+## 📱 Páginas da Aplicação
+
+### Home (`/`)
+- Apresentação da aplicação
+- Cards com funcionalidades
+- Links para login e cadastro
+
+### Login (`/login`)
+- Formulário de autenticação
+- Validação em tempo real
+- Dados de teste disponíveis
+- Link para recuperação de senha
+
+### Cadastro (`/register`)
+- Formulário de registro completo
+- Validações específicas
+- Confirmação de senha
+- Aceite de termos
+
+### Recuperação (`/forgot-password`)
+- Formulário de lembrete
+- Validação de usuário
+- Feedback de sucesso/erro
+
+## 🔧 API Endpoints
+
+### Autenticação
+- `POST /auth/login` - Realizar login
+- `POST /auth/register` - Cadastrar usuário
+- `POST /auth/forgot-password` - Recuperar senha
+
+### Documentação
+- `GET /api-docs` - Swagger UI
+
+## 🧪 Testes
+
+### Executar Testes
 ```bash
-./run.bat
+# Testes básicos
+npm test
+
+# Testes com relatório HTML
+npm run test-html
 ```
 
-O script irá iniciar o servidor, aguardar até que esteja pronto e executar todos os testes automaticamente.
+### Dados de Teste
+- **Usuário:** testuser
+- **Senha:** test123
 
-### Para usuários **Windows**
+## 📋 Regras de Validação
 
-Utilize o script `run.bat` para automatizar a execução do servidor e dos testes:
+### Usuário
+- Entre 3 e 8 caracteres
+- Deve ser único no sistema
 
-1. No Prompt de Comando (cmd), execute:
-   ```bat
-   run.bat
-   ```
+### Senha
+- Entre 5 e 8 caracteres
+- Deve conter letras e números
 
-O script irá:
-- Encerrar processos antigos do Node rodando `app.js`.
-- Iniciar o servidor em background.
-- Aguardar o servidor responder em `http://localhost:3030/`.
-- Executar os testes automatizados.
-- Encerrar o servidor ao final dos testes.
+### Email
+- Formato válido de email
+- Deve conter @ e domínio
 
-> **Dica:** Você também pode rodar manualmente:
-> 1. `npm start` (em um terminal)
-> 2. `npm test` (em outro terminal)
+## 🔒 Segurança
 
-## 📖 Documentação Swagger
+- **Bloqueio após 3 tentativas** - Proteção contra força bruta
+- **Criptografia de senhas** - bcryptjs para hash seguro
+- **Validação de entrada** - Sanitização de dados
+- **CORS configurado** - Controle de acesso
 
-Acesse a documentação interativa em: [http://localhost:3030/api-docs](http://localhost:3030/api-docs)
+## 🎨 Design System
 
-## 📑 Rotas Disponíveis
+### Cores
+- **Primária:** Azul (#3b82f6)
+- **Sucesso:** Verde (#10b981)
+- **Erro:** Vermelho (#ef4444)
+- **Aviso:** Amarelo (#f59e0b)
 
-- `POST /auth/login` - Realiza o login do usuário
-- `POST /auth/forgot-password` - Envia lembrete de senha para o usuário
-- `POST /auth/register` - Cadastra um novo usuário
-  - Regras:
-    - Não é possível cadastrar um usuário já cadastrado (duplicado)
-    - O nome de usuário deve conter entre 3 e 8 caracteres
-    - A senha deve conter entre 5 e 8 caracteres, obrigatoriamente contendo letras e números
-    - O e-mail deve ser válido (apenas um @, domínio, etc)
-    - Mensagem de erro: O email informado é inválido. Deve conter apenas um @, domínio, e não pode começar ou terminar com @ ou ponto.
+### Tipografia
+- **Fonte:** Inter (Google Fonts)
+- **Pesos:** 300, 400, 500, 600, 700
 
-## 📝 Observações
+### Componentes
+- **Botões:** Estados hover, focus, loading
+- **Inputs:** Validação visual, focus states
+- **Cards:** Sombras, hover effects
+- **Toasts:** Notificações temporárias
 
-- Projeto para fins de estudo, não utilizar em produção.
-- Desenvolvido com boas práticas de Clean Code.
-- Branch principal: `main`
+## 📊 Monitoramento
+
+### Logs
+- Console logs para debug
+- Tratamento de erros
+- Validação de dados
+
+### Métricas
+- Tempo de resposta da API
+- Taxa de sucesso/erro
+- Uso de recursos
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Mentoria 2.0** - Aplicação para estudos de teste de software
+
+## 📞 Suporte
+
+Para dúvidas ou suporte:
+- Abra uma issue no GitHub
+- Entre em contato via email
+- Consulte a documentação da API
 
 ---
 
-## 📁 Pastas e Arquivos do Projeto
-
-| Caminho/Arquivo                  | Descrição                                                                                |
-| -------------------------------- | ---------------------------------------------------------------------------------------- |
-| `app.js`                         | Ponto de entrada da aplicação. Configura o Express, rotas, middleware e Swagger.         |
-| `controllers/authController.js`  | Controller responsável por receber requisições HTTP de autenticação e lembrete de senha. |
-| `services/authService.js`        | Lógica de negócio de autenticação, controle de tentativas e lembrete de senha.           |
-| `repositories/userRepository.js` | Simula um banco de dados em memória e fornece métodos para buscar usuários.              |
-| `routes/authRoutes.js`           | Define as rotas de autenticação (`/auth/login`, `/auth/forgot-password`, `/auth/register`).                |
-| `fixtures/postLogin.json`        | Dados de exemplo para testes automatizados de login.                                     |
-| `test/login.test.js`             | Testes automatizados (Mocha/Chai/Supertest) para login e lembrete de senha.              |
-| `run.sh`                         | Script para automatizar execução do servidor, testes e geração de relatórios (Linux/Mac).|
-| `run.bat`                        | Script para automatizar execução do servidor e testes no Windows.                        |
-| `mochawesome-report/`            | Pasta gerada automaticamente com relatórios HTML/JSON dos testes.                        |
-
-### Descrição das principais pastas:
-
-- **controllers/**: Contém os controllers responsáveis por receber e tratar as requisições HTTP.
-- **services/**: Implementa as regras de negócio da aplicação.
-- **repositories/**: Responsável pelo acesso e manipulação dos dados dos usuários (em memória).
-- **routes/**: Define as rotas/endpoints da API.
-- **fixtures/**: Armazena dados de exemplo para uso nos testes automatizados.
-- **test/**: Contém os testes automatizados da aplicação.
-- **mochawesome-report/**: Pasta de saída dos relatórios de testes gerados automaticamente.
-
----
-
-<p align="center">
-  <img src="https://img.shields.io/badge/mentoria-2.0-blue" alt="Mentoria 2.0" />
-  <img src="https://img.shields.io/badge/express.js-API-green" alt="Express.js" />
-  <img src="https://img.shields.io/badge/swagger-docs-yellow" alt="Swagger" />
-</p>
+**Desenvolvido com ❤️ para estudos de teste de software**

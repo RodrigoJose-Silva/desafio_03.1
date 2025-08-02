@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Login</title>
+    <link href="./css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-blue-600 text-2xl mr-3"></i>
+                    <h1 class="text-xl font-bold text-gray-900">Sistema de Login</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="/login" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                    <a href="/register" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cadastro</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center">
+            <div class="mb-8">
+                <i class="fas fa-user-shield text-6xl text-blue-600 mb-4"></i>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Bem-vindo ao Sistema de Gestão de Login</h2>
+                <p class="text-xl text-gray-600 mb-8">Uma aplicação completa para estudos de teste de software</p>
+            </div>
+
+            <!-- Cards de funcionalidades -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <i class="fas fa-sign-in-alt text-3xl text-green-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Login Seguro</h3>
+                    <p class="text-gray-600">Sistema de autenticação com validação e bloqueio após tentativas inválidas</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <i class="fas fa-user-plus text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Cadastro de Usuários</h3>
+                    <p class="text-gray-600">Registro de novos usuários com validação de dados</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <i class="fas fa-key text-3xl text-purple-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Lembrete de Senha</h3>
+                    <p class="text-gray-600">Recuperação de senha para usuários cadastrados</p>
+                </div>
+            </div>
+
+            <!-- Botões de ação -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/login" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Fazer Login
+                </a>
+                <a href="/register" class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Criar Conta
+                </a>
+            </div>
+        </div>
+
+        <!-- Informações técnicas -->
+        <div class="mt-16 bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Tecnologias Utilizadas</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <i class="fab fa-node-js text-2xl text-green-600 mb-2"></i>
+                    <p class="text-sm font-medium text-gray-700">Node.js</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <i class="fab fa-mongodb text-2xl text-green-600 mb-2"></i>
+                    <p class="text-sm font-medium text-gray-700">MongoDB</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <i class="fab fa-docker text-2xl text-blue-600 mb-2"></i>
+                    <p class="text-sm font-medium text-gray-700">Docker</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <i class="fab fa-js text-2xl text-yellow-600 mb-2"></i>
+                    <p class="text-sm font-medium text-gray-700">JavaScript</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">Sistema de Gestão de Login - Mentoria 2.0</p>
+                <p class="text-sm text-gray-400 mt-2">Aplicação para estudos de teste de software</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html> 
