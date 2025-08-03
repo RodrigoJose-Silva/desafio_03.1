@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo - Sistema de Gestão</title>
+    <!-- Importação do MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Importação dos ícones do MaterializeCSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Importação do CSS personalizado -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <nav class="teal darken-2">
+        <div class="nav-wrapper container">
+            <a href="/" class="brand-logo">Sistema de Login</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/" id="btn-logout">Sair</a></li>
+            </ul>
+            <!-- Menu para dispositivos móveis -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    
+    <!-- Menu lateral para dispositivos móveis -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/" id="btn-logout-mobile">Sair</a></li>
+    </ul>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m10 offset-m1 l8 offset-l2">
+                <div class="card-panel z-depth-3 mt-5">
+                    <h3 class="center-align teal-text text-darken-2">Bem-vindo!</h3>
+                    
+                    <div class="center-align">
+                        <i class="material-icons large teal-text text-darken-2">check_circle</i>
+                        <h4 id="welcome-message" class="flow-text">Olá, <%= username %>. Seja bem-vindo.</h4>
+                        <p class="flow-text">Login realizado com sucesso!</p>
+                        
+                        <div class="mt-4">
+                            <a href="/" class="btn waves-effect waves-light red darken-2">
+                                Sair <i class="material-icons right">exit_to_app</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé da página -->
+    <footer class="page-footer teal darken-2">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2025 Sistema de Login - Mentoria 2.0
+            </div>
+        </div>
+    </footer>
+
+    <!-- Importação do jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Importação do MaterializeCSS JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Importação do JavaScript personalizado -->
+    <script src="/js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Exibe um toast de boas-vindas
+            M.toast({html: 'Login realizado com sucesso!', classes: 'green', displayLength: 4000});
+        });
+    </script>
+</body>
+</html>

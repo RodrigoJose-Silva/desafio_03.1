@@ -1,0 +1,87 @@
+/* styles.css */
+/* Arquivo de estilos personalizados para a aplicação web */
+
+/* Estilos gerais */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Garante que o conteúdo principal ocupe todo o espaço disponível */
+main {
+    flex: 1 0 auto;
+}
+
+/* Espaçamento superior para elementos */
+.mt-3 {
+    margin-top: 15px;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
+.mt-5 {
+    margin-top: 25px;
+}
+
+/* Estilos para os cards */
+.card-panel {
+    padding: 24px;
+    margin: 2rem 0;
+    border-radius: 8px;
+}
+
+/* Estilos para os botões */
+.btn {
+    border-radius: 4px;
+    text-transform: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos para os inputs */
+.input-field input:focus + label {
+    color: #00796b !important; /* teal darken-2 */
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #00796b !important;
+    box-shadow: 0 1px 0 0 #00796b !important;
+}
+
+/* Estilos para os ícones nos inputs */
+.input-field .prefix.active {
+    color: #00796b !important;
+}
+
+/* Estilos para os toasts */
+.toast {
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Estilos para o rodapé */
+footer.page-footer {
+    margin-top: 40px;
+    padding-top: 0;
+}
+
+/* Estilos responsivos */
+@media only screen and (max-width: 600px) {
+    .brand-logo {
+        font-size: 1.5rem !important;
+    }
+    
+    h4 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Estilos para a página de boas-vindas */
+#welcome-message {
+    margin-top: 20px;
+    font-weight: 500;
+}
