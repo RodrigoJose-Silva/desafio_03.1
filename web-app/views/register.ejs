@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Sistema de Gestão</title>
+    <!-- Importação do MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Importação dos ícones do MaterializeCSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Importação do CSS personalizado -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <nav class="teal darken-2">
+        <div class="nav-wrapper container">
+            <a href="/" class="brand-logo">Sistema de Login</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Login</a></li>
+                <li><a href="/forgot-password">Esqueci a Senha</a></li>
+            </ul>
+            <!-- Menu para dispositivos móveis -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    
+    <!-- Menu lateral para dispositivos móveis -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Login</a></li>
+        <li><a href="/forgot-password">Esqueci a Senha</a></li>
+    </ul>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel z-depth-3 mt-5">
+                    <h4 class="center-align teal-text text-darken-2">Cadastro de Usuário</h4>
+                    
+                    <!-- Formulário de cadastro -->
+                    <form id="register-form" action="/register" method="POST">
+                        <div class="input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input id="username" name="username" type="text" class="validate" required minlength="3" maxlength="8">
+                            <label for="username">Nome de Usuário (3-8 caracteres)</label>
+                            <span class="helper-text" data-error="Nome de usuário deve ter entre 3 e 8 caracteres"></span>
+                        </div>
+                        
+                        <div class="input-field">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="password" name="password" type="password" class="validate" required minlength="5" maxlength="8">
+                            <label for="password">Senha (5-8 caracteres, letras e números)</label>
+                            <span class="helper-text" data-error="Senha deve ter entre 5 e 8 caracteres"></span>
+                        </div>
+                        
+                        <div class="input-field">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" name="email" type="email" class="validate" required>
+                            <label for="email">E-mail</label>
+                            <span class="helper-text" data-error="E-mail inválido"></span>
+                        </div>
+                        
+                        <div class="center-align">
+                            <button id="btn-register" class="btn waves-effect waves-light teal darken-2" type="submit">
+                                Cadastrar <i class="material-icons right">person_add</i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="center-align mt-3">
+                        <p>
+                            Já tem uma conta? <a href="/" class="teal-text text-darken-2">Faça Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé da página -->
+    <footer class="page-footer teal darken-2">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2025 Sistema de Login - Mentoria 2.0
+            </div>
+        </div>
+    </footer>
+
+    <!-- Importação do jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Importação do MaterializeCSS JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Importação do JavaScript personalizado -->
+    <script src="/js/main.js"></script>
+    
+    <!-- Script para exibir mensagens de toast -->
+    <% if (message && message !== '') { %>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Exibe um toast com a mensagem recebida do servidor
+                const toastHTML = '<span><%= message %></span>';
+                const toastClass = '<%= type === "success" ? "green" : "red" %>';
+                M.toast({html: toastHTML, classes: toastClass, displayLength: 4000});
+            });
+        </script>
+    <% } %>
+</body>
+</html>
