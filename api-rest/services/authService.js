@@ -82,7 +82,7 @@ exports.registerUser = async (username, password, email) => {
         return { status: 400, body: { mensagem: 'A senha deve conter letras e números.' } };
     }
     // Validação de email
-    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const emailRegex = /^[^@\s.]+@[^@\s]+\.[^@\s]+[^@\s.]$/;
     if (!emailRegex.test(email)) {
         return { status: 400, body: { mensagem: 'O email informado é inválido. Deve conter apenas um @, domínio, e não pode começar ou terminar com @ ou ponto.' } };
     }
