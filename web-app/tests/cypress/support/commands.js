@@ -37,3 +37,17 @@ Cypress.Commands.add('generateTestData', () => {
 
     return { username, password, email }
 })
+
+
+//Custom command to generate password
+
+import { faker } from '@faker-js/faker';
+Cypress.Commands.add('generatePasswordWithNumber', (min = 5, max = 8) => {
+    return new Cypress.Promise((resolve) => {
+      const length = faker.number.int({ min, max });
+      const requiredNumber = faker.number.int({ min: 0, max: 9 }).toString();
+      const rest = faker.string.alphanumeric({ length: length - 1 });
+      const password = faker.helpers.shuffle((requiredNumber + rest).split('')).join('');
+      resolve(password);
+    });
+  });
