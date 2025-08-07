@@ -8,7 +8,7 @@ describe('Lembrete de senha', () => {
     })
 
     it('Deve mostrar mensagem de usuário não cadastrado quando inserido um usuário não cadastrado', () => {
-            // Gerar dados válidos usando faker
+
             cy.visit('http://localhost:8080/forgot-password')
             cy.get('#username').type('usuário-não-cadastrado', { force: true })
             cy.get('#btn-forgot-password').click()
@@ -16,7 +16,7 @@ describe('Lembrete de senha', () => {
           
     })
 
-    it('Deve cadastrar usuário e exibir a mensagem: Usuário cadastrado com sucesso!', () => {
+    it('Deve cadastrar usuário e quando inserido esse usuário deve mostrar mensagem que email foi enviado para email cadastrado', () => {
         cy.visit('http://localhost:8080/register')
         
         const { faker } = require('@faker-js/faker')
