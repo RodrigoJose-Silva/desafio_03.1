@@ -89,7 +89,7 @@ exports.registerUser = async (username, password, email) => {
     if (userRepository.findByUsername(username)) {
         return { status: 409, body: { mensagem: 'Usuário já cadastrado.' } };
     }
-    const reminder = `Seu lembrete de senha foi encaminhado para o email cadastrado: *******@email.com`;
+    const reminder = `Seu lembrete de senha foi encaminhado para o email cadastrado: ${email}`;
     const success = userRepository.addUser({ username, password, email, reminder });
     if (success) {
         return { status: 201, body: { mensagem: 'Usuário cadastrado com sucesso!' } };
