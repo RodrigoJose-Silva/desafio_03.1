@@ -88,7 +88,8 @@ class CadastroPage {
 
     // Validações de redirecionamento
     shouldRedirectToLogin() {
-        cy.url().should('include', '/')
+        cy.get('h4').should('have.text', 'Login'); 
+        // cy.url().should('include', '/')
     }
 
     // Validações de limites de caracteres

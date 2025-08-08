@@ -35,7 +35,7 @@ class LoginPage {
     cy.waitForToast(message, "error");
   }
 
-  toastMesssageSuccessrLogin(message) {
+  toastMesssageSuccessLogin(message) {
     cy.waitForToast(message, "success");
   }
 
