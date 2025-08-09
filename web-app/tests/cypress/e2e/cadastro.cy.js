@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import CadastroPage from '../page_objects/cadastro.page.js'
 
+// Suite de testes focada no fluxo de cadastro de usuário.
 describe('Cadastro de Usuário', () => {
     let cadastroPage
 
@@ -9,6 +10,7 @@ describe('Cadastro de Usuário', () => {
         cadastroPage.visit()
     })
 
+    // Casos felizes: cadastro válido e feedback positivo.
     describe('Cenários Positivos', () => {
         it('Deve cadastrar usuário e exibir a mensagem: Usuário cadastrado com sucesso!', () => {
             cy.generateTestData().then(({ username, password, email }) => {
@@ -19,6 +21,7 @@ describe('Cadastro de Usuário', () => {
         })
     })
 
+    // Validações de campos obrigatórios.
     describe('Cenários Negativos - Campos Vazios', () => {
         it('Deve exibir erro quando campo nome de usuário estiver vazio', () => {
             // Preencher apenas senha e email
@@ -60,6 +63,7 @@ describe('Cadastro de Usuário', () => {
         })
     })
 
+    // Limites mínimos: username >= 3 e password >= 5.
     describe('Cenários Negativos - Limites de Caracteres', () => {
         it('Deve exibir erro quando nome de usuário tiver menos de 3 caracteres', () => {
             const shortUsername = 'ab' // 2 caracteres
@@ -84,6 +88,7 @@ describe('Cadastro de Usuário', () => {
         })
     })
 
+    // Formatos inválidos de e-mail.
     describe('Cenários Negativos - Formato de Email', () => {
         it('Deve exibir erro quando email não tiver formato válido', () => {
             const username = faker.internet.userName().substring(0, 8)
@@ -119,6 +124,7 @@ describe('Cadastro de Usuário', () => {
         })
     })
 
+    // Violação de unicidade: username já existente.
     describe('Cenários Negativos - Usuário Já Cadastrado', () => {
         it('Deve exibir erro quando tentar cadastrar usuário já existente', () => {
             // Primeiro cadastro
