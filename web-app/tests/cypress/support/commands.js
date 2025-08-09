@@ -1,17 +1,13 @@
 // ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
+// Arquivo de comandos customizados do Cypress
 // ***********************************************
 
-// Custom command to wait for toast messages
+import { faker } from "@faker-js/faker";
+import CadastroPage from "../page_objects/cadastro.page";
+
+// Aguarda e valida mensagens de toast
 Cypress.Commands.add("waitForToast", (expectedMessage, type = "success") => {
-  cy.get(".toast").should("be.visible");
-  cy.get(".toast").should("contain", expectedMessage);
+  cy.get(".toast").should("be.visible").and("contain", expectedMessage);
 
   if (type === "success") {
     cy.get(".toast").should("have.class", "green");
@@ -20,17 +16,15 @@ Cypress.Commands.add("waitForToast", (expectedMessage, type = "success") => {
   }
 });
 
-// Custom command to clear form fields
+// Limpa campos do formulário padrão de cadastro
 Cypress.Commands.add("clearForm", () => {
   cy.get("#username").clear();
   cy.get("#password").clear();
   cy.get("#email").clear();
 });
 
-// Custom command to generate test data
+// Gera dados de teste básicos
 Cypress.Commands.add("generateTestData", () => {
-  const { faker } = require("@faker-js/faker");
-
   const username = faker.internet.userName().substring(0, 8);
   const password = faker.internet.password({ min: 5, max: 8 });
   const email = `${username}@test.com`;
@@ -38,9 +32,7 @@ Cypress.Commands.add("generateTestData", () => {
   return { username, password, email };
 });
 
-//Custom command to generate password
-
-import { faker } from "@faker-js/faker";
+// Gera senha contendo pelo menos um número
 Cypress.Commands.add("generatePasswordWithNumber", (min = 5, max = 8) => {
   return new Cypress.Promise((resolve) => {
     const length = faker.number.int({ min, max });
@@ -53,4 +45,26 @@ Cypress.Commands.add("generatePasswordWithNumber", (min = 5, max = 8) => {
   });
 });
 
+// Cadastra um novo usuário aleatório e retorna os dados gerados
+Cypress.Commands.add("cadastrarNovoUsuario", () => {
+  const cadastroPage = new CadastroPage();
+  cadastroPage.visit();
 
+  const username = faker.person.firstName().substring(0, 8);
+  const length = faker.number.int({ min: 5, max: 8 });
+  const password = faker.string.alphanumeric(length);
+  const email = `${username}@test.com`;
+
+  cadastroPage.registerUser(username, password, email);
+  cadastroPage.shouldShowSuccessToast("Usuário cadastrado com sucesso!");
+  cadastroPage.shouldRedirectToLogin();
+
+  return cy.wrap({ username, password, email });
+});
+
+// Solicita lembrete de senha para um usuário
+Cypress.Commands.add("solicitarLembreteSenha", (username) => {
+  cy.visit("/forgot-password");
+  cy.get("#username").type(username, { force: true });
+  cy.get("#btn-forgot-password").click();
+});

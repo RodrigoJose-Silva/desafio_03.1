@@ -11,19 +11,11 @@ describe('Cadastro de Usuário', () => {
 
     describe('Cenários Positivos', () => {
         it('Deve cadastrar usuário e exibir a mensagem: Usuário cadastrado com sucesso!', () => {
-            // Gerar dados válidos usando faker
-            const username = faker.internet.userName().substring(0, 8) // Máximo 8 caracteres
-            const password = faker.internet.password({ min: 5, max: 8 })
-            const email = `${username}@test.com`
-
-            // Preencher formulário e submeter
-            cadastroPage.registerUser(username, password, email)
-
-            // Validar redirecionamento para login
-            cadastroPage.shouldRedirectToLogin()
-
-            // Validar mensagem de sucesso
-            cadastroPage.shouldShowSuccessToast('Usuário cadastrado com sucesso!')
+            cy.generateTestData().then(({ username, password, email }) => {
+                cadastroPage.registerUser(username, password, email)
+                cadastroPage.shouldRedirectToLogin()
+                cadastroPage.shouldShowSuccessToast('Usuário cadastrado com sucesso!')
+            })
         })
     })
 

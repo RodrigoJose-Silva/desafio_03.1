@@ -1,47 +1,22 @@
 import { faker } from "@faker-js/faker";
 import LoginPage from "../page_objects/login.page";
-import CadastroPage from "../page_objects/cadastro.page";
 
 
 
 describe("Cadastro e Cenários de Login", () => {
-  let cadastroPage;
   let loginPage;
-  let username;
-  let password;
-  let email;
-
-  before(() => {
-    cadastroPage = new CadastroPage();
-    cadastroPage.visit();
-
-    // Gerar dados válidos usando faker
-    username = faker.internet.userName().substring(0, 8);
-    password = faker.internet.password({ min: 5, max: 8 });
-    email = `${username}@test.com`;
-
-    // Preencher formulário e submeter
-    cadastroPage.registerUser(username, password, email);
-
-    // Validar redirecionamento para login
-    cadastroPage.shouldRedirectToLogin();
-
-    // Validar mensagem de sucesso
-    cadastroPage.shouldShowSuccessToast("Usuário cadastrado com sucesso!");
-  });
 
   describe("Login com usuário recém cadastrado", () => {
-    beforeEach(() => {
-      loginPage = new LoginPage();
-      loginPage.goUrl();
-    });
-
     it("Deve fazer login com sucesso usando o usuário cadastrado", () => {
-      loginPage.fieldUsername(username);
-      loginPage.fieldPassword(password);
-      loginPage.submitLogin();
-      loginPage.toastMesssageSuccessLogin("Login realizado com sucesso!");
-      cy.url().should("include", "/login");
+      cy.cadastrarNovoUsuario().then(({ username, password }) => {
+        const loginPage = new LoginPage();
+        // Já estamos na tela de login após o cadastro
+        loginPage.fieldUsername(username);
+        loginPage.fieldPassword(password);
+        loginPage.submitLogin();
+        loginPage.toastMesssageSuccessLogin("Login realizado com sucesso!");
+        cy.url().should("include", "/login");
+      });
     });
   });
 
