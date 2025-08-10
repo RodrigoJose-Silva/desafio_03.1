@@ -36,6 +36,19 @@ controllers/
 routes/
   - authRoutes.js        # Rotas da aplicação web
 app.js                   # Ponto de entrada da aplicação
+tests/
+  - cypress.config.js    # Configuração do Cypress (baseUrl, viewport, etc.)
+  - cypress/
+    - e2e/
+      - cadastro.cy.js       # Cenários de cadastro de usuário
+      - login.cy.js          # Cenários de login
+      - lembrarSenha.cy.js   # Cenários de lembrete de senha
+    - page_objects/
+      - cadastro.page.js     # Page Object da tela de cadastro
+      - login.page.js        # Page Object da tela de login
+    - support/
+      - commands.js          # Comandos customizados (ex.: waitForToast, cadastrarNovoUsuario)
+      - e2e.js               # Bootstrap do Cypress (import dos comandos)
 ```
 
 ## 🔄 Fluxo de Autenticação
@@ -84,3 +97,32 @@ npm start
 - **Axios**: Cliente HTTP para comunicação com a API
 - **MaterializeCSS**: Framework CSS para design responsivo
 - **JavaScript**: Para interatividade no lado do cliente
+
+## 🧪 Testes End-to-End (Cypress)
+
+Pré-requisitos:
+- API rodando em `http://localhost:3030` (veja seção anterior)
+- Aplicação web rodando em `http://localhost:8080`
+
+O Cypress já está configurado com `baseUrl` em `tests/cypress.config.js`.
+
+Abrir a interface do Cypress:
+
+```bash
+npx cypress open --config-file tests/cypress.config.js
+```
+
+Executar testes em modo headless:
+
+```bash
+npx cypress run --config-file tests/cypress.config.js
+```
+
+### Page Objects e Comandos Customizados
+- Page Objects: `tests/cypress/page_objects/` encapsulam seletores e ações das telas de Login e Cadastro.
+- Comandos: `tests/cypress/support/commands.js` contém utilitários como:
+  - `waitForToast(message, type)`: valida toasts de sucesso/erro.
+  - `cadastrarNovoUsuario()`: executa o fluxo de cadastro e retorna `{ username, password, email }` gerados.
+  - `solicitarLembreteSenha(username)`: solicita o lembrete na tela apropriada.
+
+Esses artefatos foram comentados com JSDoc para facilitar a compreensão e manutenção.
